@@ -3,89 +3,86 @@
 // Observable streams
 //
 
-var Rx = require('rxjs/Rx');
-var assert = require('assert');
+var Rx = require("rxjs/Rx");
+var assert = require("assert");
 
-describe('lesson 1', function() {
-  it('sample subscription', function() {
-    var result = '';
+describe("lesson 1", function() {
+  it("sample subscription", function() {
+    var result = "";
 
-    Rx.Observable
-      .of(45)
-      .subscribe(function(x) { result = x });
+    Rx.Observable.of(45).subscribe(function(x) {
+      result = x;
+    });
 
-    assert.equal(result, ________);
+    assert.equal(result, 45);
   });
 
-  it('simple of', function() {
-    var result = '';
+  it("simple of", function() {
+    var result = "";
 
-    Rx.Observable
-      .of('foo')
-      .subscribe(function(x) { result = x; });
+    Rx.Observable.of("foo").subscribe(function(x) {
+      result = x;
+    });
 
-    assert.equal(result, ________);
+    assert.equal(result, "foo");
   });
 
-  it('the last event', function() {
-    var result = '';
-    var strings = ['foo','bar'];
+  it("the last event", function() {
+    var result = "";
+    var strings = ["foo", "bar"];
 
-    Rx.Observable
-      .from(strings)
-      .subscribe(function(x) { result = x; });
+    Rx.Observable.from(strings).subscribe(function(x) {
+      result = x;
+    });
 
-    assert.equal(result, ________);
+    assert.equal(result, "bar");
   });
 
-  it('everything counts', function() {
+  it("everything counts", function() {
     var result = 0;
     var numbers = [1, 2, 3];
 
-    Rx.Observable
-      .from(numbers)
-      .subscribe(function(x) { result += x; });
+    Rx.Observable.from(numbers).subscribe(function(x) {
+      result += x;
+    });
 
-    assert.equal(result, ________);
+    assert.equal(result, 6);
   });
 
-  it('rest on sunday', function() {
+  it("rest on sunday", function() {
     var result = [];
 
-    Rx.Observable
-      .range(1, 7)
-      .subscribe(function(d) {
-        result.push(d === 7 ? 'rest' : ________);
-      });
+    Rx.Observable.range(1, 7).subscribe(function(d) {
+      result.push(d === 7 ? "rest" : "work");
+    });
 
-    assert.equal(result.join(' '), 'work work work work work work rest');
+    assert.equal(result.join(" "), "work work work work work work rest");
   });
 
-  it('nothing listens until you subscribe', function() {
+  it("nothing listens until you subscribe", function() {
     var sum = 0;
-    var number$ = Rx.Observable
-      .range(1, 10)
-      .do(function(n) { sum += n; });
+    var number$ = Rx.Observable.range(1, 10).do(function(n) {
+      sum += n;
+    });
 
     assert.equal(sum, 0);
 
-    number$.________();
+    number$.subscribe();
 
     assert.equal(sum, 55);
   });
 
-  it('starting with something different', function(done) {
+  it("starting with something different", function(done) {
     var sum = 0;
-    var number$ = Rx.Observable
-      .range(1, 10)
-      .startWith('here, have some numbers')
-      .do(function(n) { sum += n; });
-
-    number$
-      .take(1)
-      .subscribe(function(x) {
-        assert.equal(x, ________);
-        done();
+    var number$ = Rx.Observable.range(1, 10)
+      .startWith("here, have some numbers")
+      .do(function(n) {
+        sum += n;
       });
+
+    number$.take(1).subscribe(function(x) {
+      assert.equal(x, "here, have some numbers");
+      done();
+    });
   });
 });
