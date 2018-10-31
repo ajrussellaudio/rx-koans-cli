@@ -1,3 +1,11 @@
+# Hiya
+
+If you've dropped in from Google, this repo is for my answers to the koans. All the tests are passing and you won't have any fun.
+
+You're looking for the original koans here: https://github.com/jondlm/rx-koans-cli
+
+---
+
 # Rx 5 Koans on the Command Line
 
 Koans == learn by example
